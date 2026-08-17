@@ -1,0 +1,116 @@
+[
+  {
+    "file": "01_sky_dart_interceptor.glb",
+    "triangles": 152,
+    "width_x": 6.599999904632568,
+    "height_y": 1.2300000190734863,
+    "length_z": 7.199999809265137,
+    "min": [
+      -3.299999952316284,
+      0.0,
+      -3.5999999046325684
+    ],
+    "max": [
+      3.299999952316284,
+      1.2300000190734863,
+      3.5999999046325684
+    ],
+    "bottom_at_zero": true,
+    "z_centered": true
+  },
+  {
+    "file": "02_afterburner_jet.glb",
+    "triangles": 140,
+    "width_x": 8.800000190734863,
+    "height_y": 1.8300000429153442,
+    "length_z": 10.800000190734863,
+    "min": [
+      -4.400000095367432,
+      0.0,
+      -5.400000095367432
+    ],
+    "max": [
+      4.400000095367432,
+      1.8300000429153442,
+      5.400000095367432
+    ],
+    "bottom_at_zero": true,
+    "z_centered": true
+  },
+  {
+    "file": "03_pulse_commuter.glb",
+    "triangles": 140,
+    "width_x": 16.0,
+    "height_y": 3.240000009536743,
+    "length_z": 18.0,
+    "min": [
+      -8.0,
+      0.0,
+      -9.0
+    ],
+    "max": [
+      8.0,
+      3.240000009536743,
+      9.0
+    ],
+    "bottom_at_zero": true,
+    "z_centered": true
+  },
+  {
+    "file": "04_vector_cargo_lifter.glb",
+    "triangles": 140,
+    "width_x": 24.0,
+    "height_y": 5.269999980926514,
+    "length_z": 26.0,
+    "min": [
+      -12.0,
+      0.0,
+      -13.0
+    ],
+    "max": [
+      12.0,
+      5.269999980926514,
+      13.0
+    ],
+    "bottom_at_zero": true,
+    "z_centered": true
+  },
+  {
+    "file": "05_neon_bomber.glb",
+    "triangles": 140,
+    "width_x": 20.0,
+    "height_y": 4.050000190734863,
+    "length_z": 32.0,
+    "min": [
+      -10.0,
+      0.0,
+      -16.0
+    ],
+    "max": [
+      10.0,
+      4.050000190734863,
+      16.0
+    ],
+    "bottom_at_zero": true,
+    "z_centered": true
+  },
+  {
+    "file": "06_skyline_heavy_transport.glb",
+    "triangles": 140,
+    "width_x": 42.0,
+    "height_y": 8.109999656677246,
+    "length_z": 48.0,
+    "min": [
+      -21.0,
+      0.0,
+      -24.0
+    ],
+    "max": [
+      21.0,
+      8.109999656677246,
+      24.0
+    ],
+    "bottom_at_zero": true,
+    "z_centered": true
+  }
+]

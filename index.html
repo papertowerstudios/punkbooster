@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PUNK BOOSTER v3</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;
+    background:linear-gradient(#401e78 0%, #782a8c 16%, #c4408c 32%, #ff7878 45%, #ffa860 55%, #964060 72%, #321842 100%);
+    font-family:'Courier New',monospace;color:#3af0ff}
+  canvas{display:block}
+  #hud{position:fixed;left:14px;top:12px;font-size:12px;line-height:1.5;white-space:pre;
+    color:#3af0ff;text-shadow:0 0 6px #0cc;z-index:5}
+  /* CRT-Scanlines + Vignette */
+  #crt{position:fixed;inset:0;pointer-events:none;z-index:6;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0px, rgba(0,0,0,.18) 1px, transparent 2px, transparent 4px);
+    mix-blend-mode:multiply}
+  #vig{position:fixed;inset:0;pointer-events:none;z-index:6;
+    box-shadow:inset 0 0 240px 60px rgba(10,2,40,.9)}
+  #start{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(20,6,64,.72) 0%, rgba(122,20,110,.55) 45%, rgba(255,90,70,.42) 72%, rgba(255,160,60,.5) 100%);
+    cursor:pointer}
+  #start h1{font-size:clamp(44px,10vw,140px);margin:0;letter-spacing:.1em;font-weight:bold;
+    color:#ffb43c;
+    text-shadow:0 0 14px #ff8a2c, 0 0 34px #ff2bd6, 0 0 60px #ff2bd6, 3px 3px 0 #2af0ff, 6px 6px 0 rgba(255,43,214,.5);
+    transform:skewX(-7deg)}
+  #start p{font-size:16px;color:#ffe08a;text-shadow:0 0 10px #ff8a2c;letter-spacing:.3em;margin-top:30px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:.25}}
+  /* v2: Score-HUD, Punkte-Popups, Crash-Flash */
+  #score{position:fixed;right:18px;top:12px;z-index:5;text-align:right;font-size:16px;
+    color:#ffe08a;text-shadow:0 0 8px #ff8a2c;letter-spacing:.14em;white-space:pre;line-height:1.55}
+  #pops{position:fixed;left:50%;top:32%;transform:translateX(-50%);z-index:7;pointer-events:none;text-align:center}
+  .pop{font-size:26px;letter-spacing:.2em;font-weight:bold;animation:popfly .9s ease-out forwards}
+  @keyframes popfly{0%{opacity:0;transform:translateY(14px) scale(.7)}15%{opacity:1;transform:translateY(0) scale(1.08)}100%{opacity:0;transform:translateY(-34px) scale(1)}}
+  #dmg{position:fixed;inset:0;pointer-events:none;z-index:6;
+    box-shadow:inset 0 0 200px 60px rgba(255,40,70,.75);opacity:0;transition:opacity .15s}
+  /* Redline-System: Speed-Fenster-Balken, Punk-Verfolgungs-UI, Bust-Blitz */
+  #speedbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);width:280px;height:12px;z-index:5;
+    background:linear-gradient(90deg,#ff2b3c 0%,#ff2b3c 20%,#241436 20%,#241436 62%,#123a44 62%,#2af0ff 82%,#ff2bd6 100%);
+    border:1px solid rgba(255,255,255,0.25)}
+  #sbneedle{position:absolute;top:-3px;left:0;width:3px;height:18px;background:#fff;box-shadow:0 0 8px #fff}
+  #sblabel{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);font-size:13px;letter-spacing:.32em;z-index:5;
+    color:#2af0ff;text-shadow:0 0 10px #0cc;white-space:pre}
+  #punkui{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:5;font-size:16px;letter-spacing:.22em;
+    color:#ffe08a;text-shadow:0 0 10px #ff8a2c;white-space:pre;text-align:center}
+  #bustfx{position:fixed;inset:0;pointer-events:none;z-index:6;
+    box-shadow:inset 0 0 240px 80px rgba(42,240,255,.8);opacity:0}
+  #pause,#end{position:fixed;inset:0;z-index:11;display:none;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(20,6,64,.78) 0%, rgba(122,20,110,.6) 45%, rgba(255,90,70,.45) 72%, rgba(255,160,60,.5) 100%);
+    backdrop-filter:blur(2px)}
+  #pause h2,#end h2{font-size:clamp(40px,9vw,120px);margin:0;letter-spacing:.1em;font-weight:bold;color:#ffb43c;transform:skewX(-7deg);
+    text-shadow:0 0 14px #ff8a2c,0 0 34px #ff2bd6,0 0 60px #ff2bd6,3px 3px 0 #2af0ff,6px 6px 0 rgba(255,43,214,.5)}
+  .pbtn{margin-top:22px;font-family:inherit;font-size:18px;letter-spacing:.22em;color:#ffe08a;
+    background:rgba(255,43,214,.10);border:2px solid #ff2bd6;padding:12px 40px;cursor:pointer;
+    text-shadow:0 0 8px #ff8a2c;box-shadow:0 0 18px rgba(255,43,214,.5)}
+  .pbtn:hover,.pbtn.sel{background:rgba(42,240,255,.22);border-color:#2af0ff;color:#fff;box-shadow:0 0 26px rgba(42,240,255,.6)}
+</style>
+</head>
+<body>
+<div id="hud"></div>
+<div id="crt"></div>
+<div id="vig"></div>
+<div id="dmg"></div>
+<div id="bustfx"></div>
+<div id="score"></div>
+<div id="pops"></div>
+<div id="speedbar"><div id="sbneedle"></div></div>
+<div id="sblabel"></div>
+<div id="punkui"></div>
+<div id="start"><h1>PUNK BOOSTER</h1><p>CLICK · KEY · GAMEPAD TO START</p>
+  <p style="font-size:14px;letter-spacing:.22em;color:#ffd24a;text-shadow:0 0 12px #ff8a2c;animation:none;margin-top:10px">PUT YOUR VOLUME TO THE MAX</p>
+  <p style="font-size:11px;letter-spacing:.15em;color:#a06ad0;animation:none;margin-top:34px">
+  STICK/ARROWS steer · SHIFT boost · SPACE brake · time bends when you move<br>
+  SPEED = SCORE · near miss = bonus · crash = speed loss<br>
+  TOO SLOW = STALL · HOLD BOOST = REDLINE · CATCH THE PUNK</p>
+  <p style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.28em;color:#7a5aa8;animation:none">© papertowerstudios</p></div>
+<div id="pause"><h2>PAUSED</h2>
+  <div class="pbtn" id="btnResume">RESUME</div>
+  <div class="pbtn" id="btnRestart">RESTART</div>
+  <p style="font-size:11px;letter-spacing:.2em;color:#ffd9a0;margin-top:28px">ESC or START to resume</p></div>
+<div id="end"><h2>LEVEL CLEARED</h2>
+  <p class="dist" style="font-size:18px;color:#ffe08a;text-shadow:0 0 10px #ff8a2c;letter-spacing:.2em;margin-top:12px">DISTANCE 0</p>
+  <div class="pbtn" id="btnEndRestart">FLY AGAIN</div>
+  <p style="font-size:11px;letter-spacing:.2em;color:#ffd9a0;margin-top:22px">PRESS ANYTHING</p></div>
+<script src="bundle.js"></script>
+</body>
+</html>
