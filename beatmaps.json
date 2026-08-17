@@ -1,0 +1,281 @@
+{
+ "_comment": "PUNK BOOSTER BeatMaps - handkuratiert auf Basis echter WAV-Analyse (build/track_analysis.json). Zeiten in Sekunden Song-Zeit. density = Beats pro Note (1=jeder Beat). gateEvery = alle N Beats ein Beat Gate. Modi: rings|mixed|combat|pursuit|climax|outro. patterns: h|vert|zig|diag|stair|center|orbit",
+ "1": {
+  "track": "vice-runway",
+  "bpm": 65,
+  "offset": 16.78,
+  "identity": "Flug/Rhythmus/Verfolgung lernen - kein Combat, das Spiel lehrt durch Design",
+  "sections": [
+   {
+    "t0": 9,
+    "t1": 30,
+    "mode": "rings",
+    "density": 2,
+    "patterns": [
+     "h",
+     "center"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 30,
+    "t1": 52,
+    "mode": "rings",
+    "density": 1,
+    "patterns": [
+     "zig",
+     "vert"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 52,
+    "t1": 70,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "h",
+     "stair"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 70,
+    "t1": 83,
+    "mode": "pursuit",
+    "density": 2,
+    "patterns": [
+     "zig"
+    ],
+    "label": "CHASE HIM!"
+   },
+   {
+    "t0": 83,
+    "t1": 108.5,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 4,
+    "patterns": [
+     "diag",
+     "zig"
+    ],
+    "label": "",
+    "curve": 1.0
+   },
+   {
+    "t0": 108.5,
+    "t1": 126,
+    "mode": "climax",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "orbit",
+     "diag"
+    ],
+    "label": "FINALE - BUST HIM!",
+    "curve": 0,
+    "weave": 0.6
+   },
+   {
+    "t0": 126,
+    "t1": 133,
+    "mode": "outro",
+    "density": 4,
+    "patterns": [
+     "center"
+    ],
+    "label": ""
+   }
+  ]
+ },
+ "2": {
+  "track": "turbo-kaskade",
+  "bpm": 80.75,
+  "offset": 0.38,
+  "identity": "Technisches Tempo + Genre-Remix: die Musik wechselt den Spielmodus (erster Combat)",
+  "sections": [
+   {
+    "t0": 10.5,
+    "t1": 40,
+    "mode": "rings",
+    "density": 2,
+    "patterns": [
+     "stair",
+     "h"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 40,
+    "t1": 84,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "zig",
+     "stair"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 84,
+    "t1": 107,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 4,
+    "patterns": [
+     "diag",
+     "orbit"
+    ],
+    "label": "",
+    "turn": 1,
+    "curve": 0.6
+   },
+   {
+    "t0": 107,
+    "t1": 118,
+    "mode": "combat",
+    "density": 2,
+    "patterns": [],
+    "label": "COMBAT!"
+   },
+   {
+    "t0": 118,
+    "t1": 171,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "zig",
+     "diag",
+     "stair"
+    ],
+    "label": "",
+    "turn": -1,
+    "curve": 0,
+    "weave": 0.9
+   },
+   {
+    "t0": 171,
+    "t1": 182.5,
+    "mode": "climax",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "orbit",
+     "zig"
+    ],
+    "label": "FINAL CHASE!",
+    "curve": 0.9
+   },
+   {
+    "t0": 182.5,
+    "t1": 187,
+    "mode": "outro",
+    "density": 4,
+    "patterns": [
+     "center"
+    ],
+    "label": ""
+   }
+  ]
+ },
+ "3": {
+  "track": "poison-heartbeat",
+  "bpm": 65,
+  "offset": 1.18,
+  "identity": "Dunkel, gefaehrlich, konfrontativ - Punk-Druck + Combat-Eskalation bis zum staerksten Finale",
+  "sections": [
+   {
+    "t0": 8,
+    "t1": 28,
+    "mode": "rings",
+    "density": 2,
+    "patterns": [
+     "vert",
+     "zig"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 28,
+    "t1": 46,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "zig",
+     "diag"
+    ],
+    "label": ""
+   },
+   {
+    "t0": 46,
+    "t1": 53,
+    "mode": "combat",
+    "density": 2,
+    "patterns": [],
+    "label": "AMBUSH!"
+   },
+   {
+    "t0": 53,
+    "t1": 75,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 8,
+    "patterns": [
+     "stair",
+     "orbit"
+    ],
+    "label": "",
+    "turn": -1
+   },
+   {
+    "t0": 75,
+    "t1": 92,
+    "mode": "mixed",
+    "density": 1,
+    "gateEvery": 4,
+    "patterns": [
+     "diag",
+     "zig"
+    ],
+    "label": "",
+    "turn": 1,
+    "dive": 1
+   },
+   {
+    "t0": 92,
+    "t1": 106,
+    "mode": "combat",
+    "density": 2,
+    "patterns": [],
+    "label": "ESCORTS!"
+   },
+   {
+    "t0": 106,
+    "t1": 121,
+    "mode": "climax",
+    "density": 1,
+    "gateEvery": 4,
+    "patterns": [
+     "orbit",
+     "diag"
+    ],
+    "label": "FINALE - BUST HIM!",
+    "curve": 1.0
+   },
+   {
+    "t0": 121,
+    "t1": 123,
+    "mode": "outro",
+    "density": 4,
+    "patterns": [
+     "center"
+    ],
+    "label": ""
+   }
+  ]
+ }
+}
