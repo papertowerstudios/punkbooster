@@ -45,6 +45,23 @@
   #grid9 div.nx{border-color:#ff2bd6;background:rgba(255,43,214,.42);box-shadow:0 0 14px #ff2bd6}
   #grid9 div.n2{border-color:#2af0ff;background:rgba(42,240,255,.2);box-shadow:0 0 8px rgba(42,240,255,.55)}
   #grid9 div.nb{border-color:#ff2b3c;background:rgba(255,43,60,.35);box-shadow:0 0 12px #ff2b3c}
+  /* COMBO-METER: grosses x-Display, poppt bei jedem Treffer, Farbe eskaliert mit der Serie */
+  #combometer{position:fixed;left:50%;bottom:118px;transform:translateX(-50%);z-index:6;display:none;
+    font-size:36px;font-weight:bold;letter-spacing:.08em;color:#2af0ff;
+    text-shadow:0 0 16px currentColor,0 1px 2px rgba(0,0,0,.6);pointer-events:none}
+  #combometer.pop{animation:cpop .18s ease-out}
+  #combometer.hot{animation:cglow .5s ease-in-out infinite alternate}
+  #combometer.pop.hot{animation:cpop .18s ease-out, cglow .5s ease-in-out infinite alternate}
+  @keyframes cpop{from{transform:translateX(-50%) scale(1.9)}to{transform:translateX(-50%) scale(1)}}
+  @keyframes cglow{from{text-shadow:0 0 14px currentColor,0 1px 2px rgba(0,0,0,.6)}to{text-shadow:0 0 34px currentColor,0 0 70px currentColor,0 1px 2px rgba(0,0,0,.6)}}
+  /* Startscreen-Menue: Level / Schwierigkeit / Sync-Kalibrierung (MIAMIPUNK-Chips) */
+  #menu{margin-top:21vh;text-align:center;font-size:13px;letter-spacing:.18em;color:#9ad0ff}   /* alle Optionen UNTER der Horizont-Linie */
+  #menu .mrow{margin-top:12px}
+  #menu .mopt{display:inline-block;margin:0 6px;padding:5px 12px;border:1px solid rgba(42,240,255,.45);
+    border-radius:3px;cursor:pointer;color:#d8f0ff;background:rgba(10,8,34,.18);
+    text-shadow:0 1px 2px rgba(10,6,40,.7),0 0 8px rgba(42,240,255,.5)}
+  #menu .mopt.sel{color:#ff8ae4;border-color:#ff2bd6;background:rgba(255,43,214,.14);
+    text-shadow:0 1px 2px rgba(10,6,40,.7),0 0 10px #ff2bd6}
   #sblabel{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);font-size:13px;letter-spacing:.32em;z-index:5;
     color:#2af0ff;text-shadow:0 0 10px #0cc;white-space:pre}
   #punkui{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:5;font-size:16px;letter-spacing:.22em;
@@ -74,12 +91,19 @@
 <div id="sblabel"></div>
 <div id="punkui"></div>
 <div id="grid9"></div>
-<div id="start"><h1>PUNK BOOSTER</h1><p>RHYTHM MODE · FLIEG IN DIE LEUCHTENDE ZELLE · CLICK TO START</p>
-  <p style="font-size:14px;letter-spacing:.22em;color:#ffd24a;text-shadow:0 0 12px #ff8a2c;animation:none;margin-top:10px">PUT YOUR VOLUME TO THE MAX</p>
-  <p style="font-size:11px;letter-spacing:.15em;color:#a06ad0;animation:none;margin-top:34px">
-  STICK/ARROWS steer · SHIFT boost · SPACE brake · time bends when you move<br>
-  SPEED = SCORE · near miss = bonus · crash = speed loss<br>
-  TOO SLOW = STALL · HOLD BOOST = REDLINE · CATCH THE PUNK</p>
+<div id="combometer"></div>
+<div id="start"><h1>PUNK BOOSTER</h1><p>RHYTHM MODE · FLY THE GLOWING CELL · CLICK TO START</p>
+<div id="menu">
+  <div class="mrow"><span class="mopt lv sel" data-lv="1">VICE RUNWAY</span><span class="mopt lv" data-lv="2">TURBO KASKADE</span><span class="mopt lv" data-lv="3">POISON HEARTBEAT</span></div>
+  <div class="mrow"><span class="mopt df" data-df="0">EASY</span><span class="mopt df sel" data-df="1">NORMAL</span><span class="mopt df" data-df="2">HARD</span></div>
+  <div class="mrow"><span class="mopt tg" id="setInvY">INVERT Y</span><span class="mopt tg" id="setCrt">CRT</span><span class="mopt tg" id="setFlash">FLASH</span><span class="mopt tg" id="setShake">SHAKE</span><span class="mopt tg" id="setRecep">GUIDE RINGS</span><span class="mopt" id="setVol">VOL 100%</span></div>
+  <div class="mrow"><span class="mopt" id="modeswitch">◄ CLASSIC (v3)</span></div>
+</div>
+  <p style="font-size:14px;letter-spacing:.22em;color:#ffe08a;text-shadow:0 1px 3px rgba(20,6,40,.95),0 0 12px #ff8a2c;animation:none;margin-top:14px">PUT YOUR VOLUME TO THE MAX</p>
+  <p style="position:absolute;bottom:48px;left:0;right:0;text-align:center;font-size:12px;line-height:1.9;letter-spacing:.15em;color:#dcecff;animation:none;text-shadow:0 1px 2px rgba(10,6,40,.75),0 0 9px rgba(42,240,255,.3)">
+  STICK/ARROWS steer · SHIFT boost · SPACE brake · X / CLICK fire<br>
+  FLY THE GLOWING CELL ON THE BEAT · GATES: take the green door · BARS: dodge the red row<br>
+  TOO SLOW = STALL · FULL FLOW = OVERDRIVE · CATCH THE PUNK</p>
   <p style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.28em;color:#7a5aa8;animation:none">© papertowerstudios</p></div>
 <div id="pause"><h2>PAUSED</h2>
   <div class="pbtn" id="btnResume">RESUME</div>
