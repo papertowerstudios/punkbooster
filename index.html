@@ -2,9 +2,180 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow,noarchive">
 <title>PUNKBUSTER v5</title>
-<style>html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(#401e78 0%,#782a8c 16%,#c4408c 32%,#ff7878 45%,#ffa860 55%,#964060 72%,#321842 100%);font-family:'Courier New',monospace;color:#3af0ff}canvas{display:block}#hud{position:fixed;left:14px;top:12px;font-size:12px;line-height:1.5;white-space:pre;color:#3af0ff;text-shadow:0 0 6px #0cc;z-index:5}#crt{position:fixed;inset:0;pointer-events:none;z-index:6;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0px,rgba(0,0,0,.18) 1px,transparent 2px,transparent 4px);mix-blend-mode:multiply}#vig{position:fixed;inset:0;pointer-events:none;z-index:6;box-shadow:inset 0 0 240px 60px rgba(10,2,40,.9)}#start{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:152px;box-sizing:border-box;background-image:linear-gradient(180deg,rgba(10,4,30,0) 46%,rgba(10,4,30,.35) 66%,rgba(8,3,24,.78) 84%),url(startbg.png);background-size:cover,cover;background-position:center top,center top;image-rendering:pixelated;cursor:pointer}#start p{font-size:26px;font-weight:bold;color:#fff4d2;letter-spacing:.4em;margin:0 0 30px;padding:12px 34px;border-radius:10px;background:radial-gradient(ellipse at center,rgba(8,3,22,.62) 0%,rgba(8,3,22,.42) 65%,rgba(8,3,22,0) 100%);animation:blink 1.1s steps(1) infinite;text-shadow:0 2px 6px rgba(0,0,0,1),0 0 5px rgba(0,0,0,.95),0 0 16px #ff8a2c,0 0 38px rgba(255,138,44,.55)}@keyframes blink{50%{opacity:.25}}#intro{position:fixed;inset:0;z-index:20;background:#000;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:1;transition:opacity .45s}#introtext{font:bold 22px 'Courier New',monospace;letter-spacing:.28em;text-align:center;color:#bff2ff;text-shadow:0 0 14px rgba(42,240,255,.55);opacity:0;transition:opacity .35s}.fsnote{position:fixed;left:50%;top:16%;transform:translateX(-50%);z-index:9;pointer-events:none;font:bold 15px 'Courier New',monospace;letter-spacing:.2em;color:#bff2ff;white-space:nowrap;padding:10px 22px;border:1px solid rgba(42,240,255,.5);border-radius:7px;background:rgba(8,4,26,.72);box-shadow:0 0 16px rgba(42,240,255,.25);text-shadow:0 1px 3px rgba(0,0,0,.95);opacity:0;animation:fsfade 4.8s ease-in-out forwards}@keyframes fsfade{0%{opacity:0}8%{opacity:1}78%{opacity:1}100%{opacity:0}}#ctrlbar{color:#8fb6d8;text-shadow:0 1px 3px rgba(0,0,0,.9)}#ctrlbar b{font-weight:bold;color:#2af0ff;text-shadow:0 0 8px rgba(42,240,255,.6)}#ctrlbar b.rt{color:#ff2bd6;text-shadow:0 0 8px rgba(255,43,214,.6)}#ctrlbar b.lt{color:#ff5a8a;text-shadow:0 0 8px rgba(255,90,138,.6)}#ctrlbar b.lb{color:#ffd24a;text-shadow:0 0 8px rgba(255,210,74,.6)}#ctrlbar b.st{color:#c0ff5e;text-shadow:0 0 8px rgba(192,255,94,.6)}#ctrlbar i{color:#5a3a7a;font-style:normal;margin:0 5px}#score{position:fixed;right:18px;top:12px;z-index:5;text-align:right;font-size:16px;color:#ffe08a;text-shadow:0 0 8px #ff8a2c;letter-spacing:.14em;white-space:pre;line-height:1.55}#pops{position:fixed;left:50%;top:32%;transform:translateX(-50%);z-index:7;pointer-events:none;text-align:center}.pop{font-size:26px;letter-spacing:.2em;font-weight:bold;animation:popfly .9s ease-out forwards}@keyframes popfly{0%{opacity:0;transform:translateY(14px) scale(.7)}15%{opacity:1;transform:translateY(0) scale(1.08)}100%{opacity:0;transform:translateY(-34px) scale(1)}}.pop.hit{font-size:38px;letter-spacing:.24em}.pop.perfect{font-size:52px;letter-spacing:.3em;animation:popbang .95s ease-out forwards}@keyframes popbang{0%{opacity:0;transform:translateY(16px) scale(.5)}12%{opacity:1;transform:translateY(0) scale(1.38)}28%{transform:translateY(-2px) scale(.98)}100%{opacity:0;transform:translateY(-46px) scale(1.04)}}#dmg{position:fixed;inset:0;pointer-events:none;z-index:6;box-shadow:inset 0 0 200px 60px rgba(255,40,70,.75);opacity:0;transition:opacity .15s}#speedbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);width:280px;height:12px;z-index:5;background:linear-gradient(90deg,#ff2b3c 0%,#ff2b3c 20%,#241436 20%,#241436 62%,#123a44 62%,#2af0ff 82%,#ff2bd6 100%);border:1px solid rgba(255,255,255,0.25)}#sbneedle{position:absolute;top:-3px;left:0;width:3px;height:18px;background:#fff;box-shadow:0 0 8px #fff}#grid9{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:5;display:grid;grid-template-columns:repeat(3,30px);grid-template-rows:repeat(3,24px);gap:5px;opacity:.94;pointer-events:none}#grid9 div{border:1.5px solid rgba(120,220,255,.32);border-radius:3px;background:rgba(10,20,40,.32)}#grid9 div.nx{border-color:#ff2bd6;background:rgba(255,43,214,.42);box-shadow:0 0 14px #ff2bd6}#grid9 div.n2{border-color:#2af0ff;background:rgba(42,240,255,.2);box-shadow:0 0 8px rgba(42,240,255,.55)}#grid9 div.nb{border-color:#ff2b3c;background:rgba(255,43,60,.35);box-shadow:0 0 12px #ff2b3c}#combometer{position:fixed;left:50%;bottom:118px;transform:translateX(-50%);z-index:6;display:none;font-size:36px;font-weight:bold;letter-spacing:.08em;color:#2af0ff;text-shadow:0 0 16px currentColor,0 1px 2px rgba(0,0,0,.6);pointer-events:none}#combometer.pop{animation:cpop .18s ease-out}#combometer.hot{animation:cglow .5s ease-in-out infinite alternate}#combometer.pop.hot{animation:cpop .18s ease-out,cglow .5s ease-in-out infinite alternate}@keyframes cpop{from{transform:translateX(-50%) scale(1.9)}to{transform:translateX(-50%) scale(1)}}@keyframes cglow{from{text-shadow:0 0 14px currentColor,0 1px 2px rgba(0,0,0,.6)}to{text-shadow:0 0 34px currentColor,0 0 70px currentColor,0 1px 2px rgba(0,0,0,.6)}}#menu{margin-top:0;text-align:center;font-size:13px;letter-spacing:.18em;color:#9ad0ff}#menu .mrow{margin-top:9px}#padhint{margin-top:12px;font-size:11px;letter-spacing:.22em;color:#c0ff5e;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px rgba(192,255,94,.45);display:none}#padhint b{color:#fff6d8;font-weight:bold}#padhint i{color:#5a3a7a;font-style:normal;margin:0 5px}#tonhint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:60;font:bold 13px 'Courier New',monospace;letter-spacing:.18em;color:#ffe08a;background:rgba(12,4,32,.88);border:1px solid #ff8a2c;padding:7px 18px;text-shadow:0 0 10px #ff8a2c;pointer-events:none;animation:tonpuls 1.1s infinite}@keyframes tonpuls{0%,100%{opacity:1}50%{opacity:.4}}#opthint{margin:9px auto 0;min-height:34px;max-width:940px;font-size:12px;letter-spacing:.10em;line-height:1.5;color:#9fd8f0;text-shadow:0 1px 3px rgba(0,0,0,.95);opacity:.88}#menu .mopt{display:inline-block;margin:0 6px;padding:7px 16px;border:2px solid #2af0ff;border-radius:7px;cursor:pointer;color:#bff2ff;background:rgba(8,4,26,.82);font-size:15px;letter-spacing:.2em;text-shadow:0 1px 3px rgba(0,0,0,.95);box-shadow:0 0 12px rgba(42,240,255,.30),inset 0 0 14px rgba(42,240,255,.10);transition:box-shadow .15s,border-color .15s,color .15s}#menu .mopt:hover{box-shadow:0 0 18px rgba(42,240,255,.55),inset 0 0 18px rgba(42,240,255,.16)}#menu .mopt.tg,#menu #setStreak{border-color:#ff2bd6;color:#ffc7f0;box-shadow:0 0 12px rgba(255,43,214,.30),inset 0 0 14px rgba(255,43,214,.10)}#menu .mopt.cur{outline:2px solid #c0ff5e;outline-offset:2px;box-shadow:0 0 16px rgba(192,255,94,.7)}#menu .mopt.sel{color:#fff;border-color:#ff2bd6;background:rgba(46,5,40,.88);text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px #ff2bd6,0 0 26px rgba(255,43,214,.8);box-shadow:0 0 10px rgba(255,43,214,.95),0 0 26px rgba(255,43,214,.65),0 0 54px rgba(255,43,214,.35),inset 0 0 24px rgba(255,43,214,.30)}#menu .mopt.tg.sel{animation:optpuls 2.6s ease-in-out infinite}@keyframes optpuls{50%{box-shadow:0 0 14px rgba(255,43,214,1),0 0 36px rgba(255,43,214,.8),0 0 72px rgba(255,43,214,.45),inset 0 0 30px rgba(255,43,214,.38)}}#menu .mrow:first-child .mopt.sel{color:#fff6d8;border-color:#ffd24a;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px #ffd24a,0 0 26px rgba(255,210,74,.8);box-shadow:0 0 10px rgba(255,210,74,.95),0 0 26px rgba(255,210,74,.6),0 0 54px rgba(255,210,74,.32),inset 0 0 24px rgba(255,210,74,.26);animation:none}#sblabel{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);font-size:13px;letter-spacing:.32em;z-index:5;color:#2af0ff;text-shadow:0 0 10px #0cc;white-space:pre}#punkui{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:5;font-size:16px;letter-spacing:.22em;color:#ffe08a;text-shadow:0 0 10px #ff8a2c;white-space:pre;text-align:center}#polflash{position:fixed;inset:0;pointer-events:none;z-index:6;opacity:0;mix-blend-mode:screen}#bustfx{position:fixed;inset:0;pointer-events:none;z-index:6;box-shadow:inset 0 0 240px 80px rgba(42,240,255,.8);opacity:0}#pause,#end{position:fixed;inset:0;z-index:11;display:none;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(20,6,64,.78) 0%,rgba(122,20,110,.6) 45%,rgba(255,90,70,.45) 72%,rgba(255,160,60,.5) 100%);backdrop-filter:blur(2px)}#pause h2,#end h2{font-size:clamp(40px,9vw,120px);margin:0;letter-spacing:.1em;font-weight:bold;color:#ffb43c;transform:skewX(-7deg);text-shadow:0 0 14px #ff8a2c,0 0 34px #ff2bd6,0 0 60px #ff2bd6,3px 3px 0 #2af0ff,6px 6px 0 rgba(255,43,214,.5)}.pbtn{margin-top:22px;font-family:inherit;font-size:18px;letter-spacing:.22em;color:#ffe08a;background:rgba(255,43,214,.10);border:2px solid #ff2bd6;padding:12px 40px;cursor:pointer;text-shadow:0 0 8px #ff8a2c;box-shadow:0 0 18px rgba(255,43,214,.5)}.pbtn:hover,.pbtn.sel{background:rgba(42,240,255,.22);border-color:#2af0ff;color:#fff;box-shadow:0 0 26px rgba(42,240,255,.6)}</style>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;
+    background:linear-gradient(#401e78 0%, #782a8c 16%, #c4408c 32%, #ff7878 45%, #ffa860 55%, #964060 72%, #321842 100%);
+    font-family:'Courier New',monospace;color:#3af0ff}
+  canvas{display:block}
+  #hud{position:fixed;left:14px;top:12px;font-size:12px;line-height:1.5;white-space:pre;
+    color:#3af0ff;text-shadow:0 0 6px #0cc;z-index:5}
+  /* CRT-Scanlines + Vignette */
+  #crt{position:fixed;inset:0;pointer-events:none;z-index:6;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0px, rgba(0,0,0,.18) 1px, transparent 2px, transparent 4px);
+    mix-blend-mode:multiply}
+  #vig{position:fixed;inset:0;pointer-events:none;z-index:6;
+    box-shadow:inset 0 0 240px 60px rgba(10,2,40,.9)}
+  /* Der Schleier wird nach UNTEN dunkler statt heller (0818): dort sitzen Menue und Hilfetexte,
+     und ueber dem hellen Sonnenuntergang war heller Text vorher praktisch unlesbar. */
+  /* padding-bottom (0818): die Controller-Zeile und das Copyright sind ABSOLUT am unteren
+     Rand verankert, das Menue flieszt dagegen normal und wuchs bis in sie hinein - der
+     CLASSIC-Chip lag auf der Steuerungszeile. Das Polster verkleinert den Flussbereich
+     nach unten, dadurch zentriert sich der Inhalt hoeher und die Zonen sind getrennt. */
+  /* STARTSCREEN (0818): fertiges Bild aus der Dropbox, Titel ist darin schon enthalten.
+     Helligkeitsmessung des Bildes: Titel 10-30 %, Sonne 30-60 %, ab 80 % dunkles
+     Gitterfeld - deshalb sammelt sich der Inhalt UNTEN (justify-content:flex-end).
+     Der Verlauf darueber ist nur noch ein dezenter Schleier fuer die Lesbarkeit. */
+  #start{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+    padding-bottom:152px;box-sizing:border-box;   /* haelt den Fliessbereich ueber der Steuerzeile */
+    background-image:linear-gradient(180deg, rgba(10,4,30,0) 46%, rgba(10,4,30,.35) 66%, rgba(8,3,24,.78) 84%), url(startbg.png);
+    background-size:cover, cover;background-position:center top, center top;image-rendering:pixelated;
+    cursor:pointer}
+  /* (Logo-Bild entfaellt - der Titel ist Teil des Startbilds startbg.png) */
+  /* PRESS START (0818): hoeher gesetzt und groesser. Es sitzt jetzt VOR DER SONNE, dem
+     hellsten Punkt des Bildes - heller Text auf hellem Grund verschwindet dort. Deshalb
+     ein dunkler Traeger mit weichem Rand plus schwarzer Kontur; der Neon-Schein liegt
+     obendrauf. Der Traeger ist halbdurchlaessig, die Sonne bleibt sichtbar. */
+  #start p{font-size:26px;font-weight:bold;color:#fff4d2;letter-spacing:.4em;
+    margin:0 0 30px;padding:12px 34px;border-radius:10px;
+    background:radial-gradient(ellipse at center, rgba(8,3,22,.62) 0%, rgba(8,3,22,.42) 65%, rgba(8,3,22,0) 100%);
+    animation:blink 1.1s steps(1) infinite;
+    text-shadow:0 2px 6px rgba(0,0,0,1),0 0 5px rgba(0,0,0,.95),
+                0 0 16px #ff8a2c,0 0 38px rgba(255,138,44,.55)}
+  @keyframes blink{50%{opacity:.25}}
+  /* INTRO: schwarze Vollflaeche, auf der die Einstiegszeilen nacheinander stehen.
+     Liegt ueber allem (auch ueber dem Startscreen, z-index 10). */
+  #intro{position:fixed;inset:0;z-index:20;background:#000;display:flex;
+    align-items:center;justify-content:center;pointer-events:none;
+    opacity:1;transition:opacity .45s}
+  #introtext{font:bold 22px 'Courier New',monospace;letter-spacing:.28em;text-align:center;
+    color:#bff2ff;text-shadow:0 0 14px rgba(42,240,255,.55);
+    opacity:0;transition:opacity .35s}
+  /* (GO-Zeile entfernt - das Intro endet still) */
+  /* Vollbild-Hinweis: erscheint kurz beim Start und blendet sich selbst aus.
+     Eigenes Element statt popup(), damit er nicht mit den Treffer-Meldungen kollidiert. */
+  .fsnote{position:fixed;left:50%;top:16%;transform:translateX(-50%);z-index:9;pointer-events:none;
+    font:bold 15px 'Courier New',monospace;letter-spacing:.2em;color:#bff2ff;white-space:nowrap;
+    padding:10px 22px;border:1px solid rgba(42,240,255,.5);border-radius:7px;
+    background:rgba(8,4,26,.72);box-shadow:0 0 16px rgba(42,240,255,.25);
+    text-shadow:0 1px 3px rgba(0,0,0,.95);opacity:0;
+    animation:fsfade 4.8s ease-in-out forwards}
+  /* Reine CSS-Animation statt requestAnimationFrame: rAF feuert in einem versteckten
+     Tab nicht, der Hinweis waere dort nie sichtbar geworden. */
+  @keyframes fsfade{0%{opacity:0}8%{opacity:1}78%{opacity:1}100%{opacity:0}}
+  /* Steuerungszeile: Tastennamen in den Spielfarben, Verben zurueckgenommen */
+  #ctrlbar{color:#8fb6d8;text-shadow:0 1px 3px rgba(0,0,0,.9)}
+  #ctrlbar b{font-weight:bold;color:#2af0ff;text-shadow:0 0 8px rgba(42,240,255,.6)}
+  #ctrlbar b.rt{color:#ff2bd6;text-shadow:0 0 8px rgba(255,43,214,.6)}
+  #ctrlbar b.lt{color:#ff5a8a;text-shadow:0 0 8px rgba(255,90,138,.6)}
+  #ctrlbar b.lb{color:#ffd24a;text-shadow:0 0 8px rgba(255,210,74,.6)}
+  #ctrlbar b.st{color:#c0ff5e;text-shadow:0 0 8px rgba(192,255,94,.6)}
+  #ctrlbar i{color:#5a3a7a;font-style:normal;margin:0 5px}
+  /* v2: Score-HUD, Punkte-Popups, Crash-Flash */
+  #score{position:fixed;right:18px;top:12px;z-index:5;text-align:right;font-size:16px;
+    color:#ffe08a;text-shadow:0 0 8px #ff8a2c;letter-spacing:.14em;white-space:pre;line-height:1.55}
+  #pops{position:fixed;left:50%;top:32%;transform:translateX(-50%);z-index:7;pointer-events:none;text-align:center}
+  .pop{font-size:26px;letter-spacing:.2em;font-weight:bold;animation:popfly .9s ease-out forwards}
+  @keyframes popfly{0%{opacity:0;transform:translateY(14px) scale(.7)}15%{opacity:1;transform:translateY(0) scale(1.08)}100%{opacity:0;transform:translateY(-34px) scale(1)}}
+  /* Treffer-Schrift hervorgehoben (User 0818): erfolgreiches Durchfliegen soll man SPUEREN.
+     .hit = normaler Treffer, .perfect = harter Knall mit Ueberschwinger. */
+  .pop.hit{font-size:38px;letter-spacing:.24em}
+  .pop.perfect{font-size:52px;letter-spacing:.3em;animation:popbang .95s ease-out forwards}
+  @keyframes popbang{0%{opacity:0;transform:translateY(16px) scale(.5)}
+    12%{opacity:1;transform:translateY(0) scale(1.38)}
+    28%{transform:translateY(-2px) scale(.98)}
+    100%{opacity:0;transform:translateY(-46px) scale(1.04)}}
+  #dmg{position:fixed;inset:0;pointer-events:none;z-index:6;
+    box-shadow:inset 0 0 200px 60px rgba(255,40,70,.75);opacity:0;transition:opacity .15s}
+  /* Redline-System: Speed-Fenster-Balken, Punk-Verfolgungs-UI, Bust-Blitz */
+  #speedbar{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);width:280px;height:12px;z-index:5;
+    background:linear-gradient(90deg,#ff2b3c 0%,#ff2b3c 20%,#241436 20%,#241436 62%,#123a44 62%,#2af0ff 82%,#ff2bd6 100%);
+    border:1px solid rgba(255,255,255,0.25)}
+  #sbneedle{position:absolute;top:-3px;left:0;width:3px;height:18px;background:#fff;box-shadow:0 0 8px #fff}
+  /* v3.5: 3x3-Ziel-Grid - naechste Zelle magenta, uebernaechste cyan gedimmt */
+  #grid9{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:5;display:grid;
+    grid-template-columns:repeat(3,30px);grid-template-rows:repeat(3,24px);gap:5px;opacity:.94;pointer-events:none}
+  #grid9 div{border:1.5px solid rgba(120,220,255,.32);border-radius:3px;background:rgba(10,20,40,.32)}
+  #grid9 div.nx{border-color:#ff2bd6;background:rgba(255,43,214,.42);box-shadow:0 0 14px #ff2bd6}
+  #grid9 div.n2{border-color:#2af0ff;background:rgba(42,240,255,.2);box-shadow:0 0 8px rgba(42,240,255,.55)}
+  #grid9 div.nb{border-color:#ff2b3c;background:rgba(255,43,60,.35);box-shadow:0 0 12px #ff2b3c}
+  /* COMBO-METER: grosses x-Display, poppt bei jedem Treffer, Farbe eskaliert mit der Serie */
+  #combometer{position:fixed;left:50%;bottom:118px;transform:translateX(-50%);z-index:6;display:none;
+    font-size:36px;font-weight:bold;letter-spacing:.08em;color:#2af0ff;
+    text-shadow:0 0 16px currentColor,0 1px 2px rgba(0,0,0,.6);pointer-events:none}
+  #combometer.pop{animation:cpop .18s ease-out}
+  #combometer.hot{animation:cglow .5s ease-in-out infinite alternate}
+  #combometer.pop.hot{animation:cpop .18s ease-out, cglow .5s ease-in-out infinite alternate}
+  @keyframes cpop{from{transform:translateX(-50%) scale(1.9)}to{transform:translateX(-50%) scale(1)}}
+  @keyframes cglow{from{text-shadow:0 0 14px currentColor,0 1px 2px rgba(0,0,0,.6)}to{text-shadow:0 0 34px currentColor,0 0 70px currentColor,0 1px 2px rgba(0,0,0,.6)}}
+  /* Startscreen-Menue: Level / Schwierigkeit / Sync-Kalibrierung (MIAMIPUNK-Chips) */
+  #menu{margin-top:0;text-align:center;font-size:13px;letter-spacing:.18em;color:#9ad0ff}   /* sitzt im dunklen Gitterfeld des Startbilds */
+  #menu .mrow{margin-top:9px}
+  /* Kurzerklaerung unter den Schaltern - wechselt mit dem, worauf Maus oder
+     Controller-Cursor zeigt. Feste Hoehe, damit die Reihen darunter nicht springen. */
+  #opthint{margin:9px auto 0;min-height:34px;max-width:940px;font-size:12px;
+    letter-spacing:.10em;line-height:1.5;color:#9fd8f0;
+    text-shadow:0 1px 3px rgba(0,0,0,.95);opacity:.88}
+  /* Chips bekommen einen EIGENEN dunklen Grund statt Durchsicht - sonst haengt die Schrift
+     direkt im hellen Himmel. Der ausgewaehlte Chip war vorher rosa Schrift auf rosa Grund
+     (color #ff8ae4 auf rgba(255,43,214,.14)) und damit der unleserlichste von allen. */
+  /* MENUE-CHIPS (0818, Stil nach User-Entwurf, Farben aus dem Spiel): kraeftiger
+     Neonrahmen, dunkle Fuellung, Glut nach aussen UND innen, mehr Innenabstand.
+     Reihen farbcodiert: Level bernstein wenn gewaehlt, Rest magenta. */
+  #menu .mopt{display:inline-block;margin:0 6px;padding:7px 16px;
+    border:2px solid #2af0ff;border-radius:7px;cursor:pointer;
+    color:#bff2ff;background:rgba(8,4,26,.82);font-size:15px;letter-spacing:.2em;
+    text-shadow:0 1px 3px rgba(0,0,0,.95);
+    box-shadow:0 0 12px rgba(42,240,255,.30), inset 0 0 14px rgba(42,240,255,.10);
+    transition:box-shadow .15s, border-color .15s, color .15s}
+  #menu .mopt:hover{box-shadow:0 0 18px rgba(42,240,255,.55), inset 0 0 18px rgba(42,240,255,.16)}
+  /* Schalter-Reihe durchgehend magenta gerahmt, auch im Aus-Zustand */
+  #menu .mopt.tg,#menu #setStreak{border-color:#ff2bd6;color:#ffc7f0;
+    box-shadow:0 0 12px rgba(255,43,214,.30), inset 0 0 14px rgba(255,43,214,.10)}
+  /* Controller-Cursor: muss sich VON .sel unterscheiden - gewaehlt und fokussiert
+     sind zwei verschiedene Dinge und koennen gleichzeitig zutreffen. */
+  #menu .mopt.cur{outline:2px solid #c0ff5e;outline-offset:2px;box-shadow:0 0 16px rgba(192,255,94,.7)}
+  /* EINGESCHALTET: kraeftiger leuchten (User 0818). Drei gestaffelte Hoefe nach aussen
+     statt einem - nah/hell, mittel, weit/schwach - dazu deutlich mehr Innenglut. Das liest
+     sich als "brennt" statt nur "hat einen Rahmen". */
+  #menu .mopt.sel{color:#fff;border-color:#ff2bd6;background:rgba(46,5,40,.88);
+    text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px #ff2bd6,0 0 26px rgba(255,43,214,.8);
+    box-shadow:0 0 10px rgba(255,43,214,.95),
+               0 0 26px rgba(255,43,214,.65),
+               0 0 54px rgba(255,43,214,.35),
+               inset 0 0 24px rgba(255,43,214,.30)}
+  /* Schalter, die AN sind, atmen leicht - macht den Zustand auf einen Blick lesbar */
+  #menu .mopt.tg.sel{animation:optpuls 2.6s ease-in-out infinite}
+  @keyframes optpuls{50%{box-shadow:0 0 14px rgba(255,43,214,1),
+                                    0 0 36px rgba(255,43,214,.8),
+                                    0 0 72px rgba(255,43,214,.45),
+                                    inset 0 0 30px rgba(255,43,214,.38)}}
+  /* gewaehlte Strecke in Bernstein - hebt die Songwahl von den Schaltern ab */
+  #menu .mrow:first-child .mopt.sel{color:#fff6d8;border-color:#ffd24a;
+    text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px #ffd24a,0 0 26px rgba(255,210,74,.8);
+    box-shadow:0 0 10px rgba(255,210,74,.95),
+               0 0 26px rgba(255,210,74,.6),
+               0 0 54px rgba(255,210,74,.32),
+               inset 0 0 24px rgba(255,210,74,.26);
+    animation:none}
+  #sblabel{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);font-size:13px;letter-spacing:.32em;z-index:5;
+    color:#2af0ff;text-shadow:0 0 10px #0cc;white-space:pre}
+  #punkui{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:5;font-size:16px;letter-spacing:.22em;
+    color:#ffe08a;text-shadow:0 0 10px #ff8a2c;white-space:pre;text-align:center}
+  /* POLARITAET: kein Text-HUD - die eigene Farbe traegt das SCHIFF (Kanten/Cockpit/Trail) */
+  #polflash{position:fixed;inset:0;pointer-events:none;z-index:6;opacity:0;mix-blend-mode:screen}
+  #bustfx{position:fixed;inset:0;pointer-events:none;z-index:6;
+    box-shadow:inset 0 0 240px 80px rgba(42,240,255,.8);opacity:0}
+  #pause,#end{position:fixed;inset:0;z-index:11;display:none;flex-direction:column;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(20,6,64,.78) 0%, rgba(122,20,110,.6) 45%, rgba(255,90,70,.45) 72%, rgba(255,160,60,.5) 100%);
+    backdrop-filter:blur(2px)}
+  #pause h2,#end h2{font-size:clamp(40px,9vw,120px);margin:0;letter-spacing:.1em;font-weight:bold;color:#ffb43c;transform:skewX(-7deg);
+    text-shadow:0 0 14px #ff8a2c,0 0 34px #ff2bd6,0 0 60px #ff2bd6,3px 3px 0 #2af0ff,6px 6px 0 rgba(255,43,214,.5)}
+  .pbtn{margin-top:22px;font-family:inherit;font-size:18px;letter-spacing:.22em;color:#ffe08a;
+    background:rgba(255,43,214,.10);border:2px solid #ff2bd6;padding:12px 40px;cursor:pointer;
+    text-shadow:0 0 8px #ff8a2c;box-shadow:0 0 18px rgba(255,43,214,.5)}
+  .pbtn:hover,.pbtn.sel{background:rgba(42,240,255,.22);border-color:#2af0ff;color:#fff;box-shadow:0 0 26px rgba(42,240,255,.6)}
+</style>
 </head>
 <body>
 <div id="hud"></div>
@@ -22,12 +193,11 @@
 <div id="combometer"></div>
 <div id="start"><p>PRESS START</p>
 <div id="menu">
-  <div class="mrow"><span class="mopt lv sel" data-lv="1">VICE RUNWAY</span><span class="mopt lv" data-lv="2">TURBO KASKADE</span><span class="mopt lv" data-lv="3">POISON HEARTBEAT</span><span class="mopt lv" data-lv="3" data-warp="1">TOWER</span></div>
+  <div class="mrow"><span class="mopt lv sel" data-lv="1">VICE RUNWAY</span><span class="mopt lv" data-lv="2">TURBO KASKADE</span><span class="mopt lv" data-lv="3">POISON HEARTBEAT</span><span class="mopt lv" data-lv="4">FROZEN GRID</span><span class="mopt lv" data-lv="6">NEON TEMPEST</span><span class="mopt lv" data-lv="3" data-warp="1">TOWER</span></div>
   <div class="mrow"><span class="mopt df" data-df="0">EASY</span><span class="mopt df sel" data-df="1">NORMAL</span><span class="mopt df" data-df="2">HARD</span></div>
   <div class="mrow" id="hsline" style="color:#ffd24a;text-shadow:0 1px 2px rgba(20,6,40,.8),0 0 10px rgba(255,138,44,.5);letter-spacing:.2em"></div>
-  <div class="mrow"><span class="mopt tg" id="setRings">RINGS</span><span class="mopt tg" id="setLead">LEAD</span><span class="mopt tg" id="setStyleRoll">STYLE ROLL</span><span class="mopt tg" id="setRingFb">RING FEEDBACK</span><span class="mopt" id="setStreak">STREAKS: SWARM</span></div>
+  <div class="mrow"><span class="mopt tg" id="setRings">RINGS</span><span class="mopt tg" id="setStyleRoll">STYLE ROLL</span><span class="mopt tg" id="setRingFb">RING FEEDBACK</span><span class="mopt" id="setStreak">STREAKS: SWARM</span></div>
   <div class="mrow"><span class="mopt tg" id="setFlip">FLIP CITY</span></div>
-  <div class="mrow" id="padhint"><b>D-PAD / STICK</b> SELECT <i>|</i> <b>A</b> TOGGLE <i>|</i> <b>START</b> LAUNCH</div>
   <div class="mrow" id="opthint">Every ring carries a colour and only counts if your ship carries the same one - a barrel roll flips you over. FLIP CITY sends the entire skyline with you, so the polarity you are on is impossible to miss. Switch it off and the city keeps its own colours; ship and rings still flip.</div>
 </div>
   <p id="ctrlbar" style="position:fixed;bottom:34px;left:0;right:0;text-align:center;font-size:13px;letter-spacing:.16em;animation:none">
